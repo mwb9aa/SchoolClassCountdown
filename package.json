@@ -1,0 +1,28 @@
+{
+  "name": "SchoolClassCountdown",
+  "productName": "SchoolClassCountdown",
+  "version": "1.0.0",
+  "description": "End of class countdown clock",
+  "author": "Matthew Brouk",
+  "license": "Copyright Protected 2022",
+  "private": true,
+  "main": "index.js",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder"
+  },
+  "devDependencies": {
+    "electron": "16.0.6",
+    "electron-builder": "^22.14.5"
+  },
+  "build": {
+    "appId": "com.electron.app",
+    "win": {
+      "target": "portable"
+    },
+    "portable": {
+      "unicode": false,
+      "artifactName": "SchoolClassCountdown.exe"
+    }
+  }
+}

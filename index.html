@@ -1,0 +1,83 @@
+<html>
+  <head>
+    <title>Countdown</title>
+  </head>
+  <style>
+    .time { font-family: Tahoma, sans-serif; font-style: bold; font-size: 50vh; color:black; text-align:center; background-color:#CCCCCC; opacity:0.8; border-radius:20px;padding:20px;}
+    .wrapper {display:flex; width:100%; height:auto; justify-content: center;}
+    body {-webkit-app-region: drag;}
+  </style>
+  <body>
+    <div class="wrapper"><div id="time" class="time" ><div></div>
+  </body>
+</html>
+<script>
+  //const output = `We are on Node ${process.versions.node}, Chrome ${process.versions.chrome}, and Electron ${process.versions.electron}.`;
+  //document.write(output)
+
+  const times = ["0", "09:23","10:40","11:57","13:40","14:57","15:20"];//Ending times for Lunch Shift 2
+
+  let currentTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: "2-digit", hour12: false });
+  //console.log("Current time is: "+currentTime);
+
+
+  //searches the url for the a paramerter named block
+  const urlSearchParams = new URLSearchParams(window.location.search);
+  const params = Object.fromEntries(urlSearchParams.entries());
+  if(params["block"]) { //console.log(params['block']);
+    setInterval(TimeDiff,1000, params['block']);//format setInterval(FUNCTION, TIMEtoDELAY, FUNCTION_OPTIONS, in this case the block
+  } else {
+    //For some reason, $i gets the correct array key, but if I switch the false and true of the return, I can get the right value
+    $i=0;
+    times.every( v => {
+      if (v > currentTime) { return false; }
+      //console.log(v);
+      $i++;
+      return true;
+    });
+    //console.log($i);
+    //console.log(times[$i]);
+    window.location.replace("index.html?block="+$i);//Reopen the window with the correct timing
+  }
+
+
+
+
+  function TimeDiff(x) { //x is the day with 0 = Sunday, and 6 = Saturday
+    var now = new Date();
+    //if (now.getDate()!==0) { now.setDate(now.getDate() + (x+(7-now.getDay())) % 7); } //fancy stuff to get to the next day of the week
+
+    //Get the endTime
+    var month=now.toLocaleString('default', { month: 'long' });
+    var year=now.toLocaleString('default', { year: 'numeric' });
+    var day=now.toLocaleString('default', { day: '2-digit' });
+    var endTime=month+" "+day+", "+year+" "+times[x]; //End Time
+
+    //start calculations
+    //var dt_Now = new Date();
+    var dt_Future = new Date(endTime);
+    var Timedifference = dt_Future-now;
+    if (Timedifference >= 0) {
+      var hours = Math.floor(Timedifference / 36e5);
+      var minutes = Math.floor(Timedifference % 36e5 / 60000);
+      var seconds = Math.floor(Timedifference % 60000 / 1000);
+
+    console.log(minutes.toString().padStart(2,0)+":"+seconds.toString().padStart(2,0));
+    var SundayCountdown=minutes.toString().padStart(2,0)+":"+seconds.toString().padStart(2,0);
+    document.getElementById("time").innerHTML="<span>"+SundayCountdown+"</span>";
+  } else { document.getElementById("time").innerHTML="<span>00:00</span>"; CloseEverything();  }
+
+  }
+
+  async function CloseEverything() {
+    await sleep(30000);
+    const { ipcRenderer } = require('electron');
+    // Some data that will be sent to the main process
+    let Data = {  };
+
+    // Send information to the main process, if a listener has been set, then the main process will react to the request !
+    ipcRenderer.send('request-mainprocess-action', Data);
+  }
+
+  function sleep(ms) { return new Promise(resolve => setTimeout(resolve, ms)); }
+</script>
