@@ -28,6 +28,6 @@ Use Cargo to build a production version
 1.  Replace tauri.conf.json in the installation folder with the one download from here. Default location: [app name folder]/[src-tauri]
 2. Replace the icons in the installation folder with the ones installed from here (or design your own). Default location: [app name folder]/[src-tauri]/[icons]
 
-## Instructions for use, after installing tauri
+## Instructions for use, customizations and building
 1.  Create a list in JavaScript. (Currently this list is on line 3 of main.js)
 2.  Run cargo tauri build from your commandline.
