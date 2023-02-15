@@ -3,7 +3,7 @@ This app creates a countdown for when class is over for each class.
 
 Features:
 Countdown opacity: Change opacity on Line 11 of index.html.
-Draggable
+Draggable--indicated by the mouse pointer turning to the grab icon
 Resizeable
 Opens on a second monitor/screen on the right of the main screen (requires the main and second screen to have a resolution of at least 1920px each): Change the x and y position on line 67 and 68 of tauri.conf.json.
 
