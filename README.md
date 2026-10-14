@@ -25,3 +25,8 @@ neu run
 ```
 neu build
 ```
+
+5. Package the app for distribution with neu build --embed-resources
+```
+neu build --embed-resources
+```
