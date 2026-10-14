@@ -1,33 +1,27 @@
-# Class Countdown App with Tauri + Vanilla JS
-This app creates a countdown for when class is over for each class.
+# Class Countdown App with Neutralinojs
+This app creates a countdown for when class is over for each class. Power Hour time adjustments are automatic for the normally scheduled power hour day.
 
 Features:
 Countdown opacity: Change opacity on Line 11 of index.html.
 Draggable--indicated by the mouse pointer turning to the grab icon
 Resizeable
-Opens on a second monitor/screen on the right of the main screen (requires the main and second screen to have a resolution of at least 1920px each): Change the x and y position on line 67 and 68 of tauri.conf.json.
+
 
 ## Recommended IDE Setup
 
-- [VS Code](https://code.visualstudio.com/) + [Tauri](https://marketplace.visualstudio.com/items?itemName=tauri-apps.tauri-vscode) + [rust-analyzer](https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer)
+- [VS Code](https://code.visualstudio.com/) + [Neutralinojs](https://neutralino.js.org/)
 
+## Instructions for use, customizations, and building
+1. Visit the [Docs](https://neutralino.js.org/docs/getting-started/your-first-neutralinojs-app) and follow steps 0 and 1.
 
-Use Powershell to create a generic html/css/js app
-    iwr -useb https://create.tauri.app/ps | iex
+2. Replace neutralinojs.config.json and the resources folder from the new installation with the ones downloaded from this repository.
 
-Use Cargo to build a development version
-    cargo tauri dev
+3. Navigate to the app folder and use neu run to see the program and test your modificaions.
 
-Change the icons in the src-tauri folder
-Change tauri.conf.json to reflect the new icons and to change the app identifier
-
-Use Cargo to build a production version
-    cargo tauri build
-
-## Instructions for use, after installing tauri
-1.  Replace tauri.conf.json in the installation folder with the one download from here. Default location: [app name folder]/[src-tauri]
-2. Replace the icons in the installation folder with the ones installed from here (or design your own). Default location: [app name folder]/[src-tauri]/[icons]
-
-## Instructions for use, customizations and building
-1.  Create a list in JavaScript. (Currently this list is on line 3 of main.js)
-2.  Run cargo tauri build from your commandline.
+```
+neu run
+```
+4. After running the program use neu build to build your program.
+```
+neu build
+```
